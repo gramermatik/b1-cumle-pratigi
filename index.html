@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>B1 Cümle Pratiği</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1 onclick="show('home')">B1 Pratik</h1>
+  <nav>
+    <button onclick="show('home')">Ana Sayfa</button>
+    <button onclick="show('progress')">Gelişimim</button>
+  </nav>
+</header>
+
+<main>
+  <!-- ANA SAYFA -->
+  <section id="home" class="screen">
+    <p class="lead">Bir çalışma türü seç. Her tur 10 sorudur.</p>
+    <div class="cards">
+      <button class="card" onclick="startQuiz('mc')">
+        <span class="icon">🔘</span><b>Çoktan Seçmeli</b>
+        <small>Türkçe cümlenin doğru İngilizcesini seç</small>
+      </button>
+      <button class="card" onclick="startQuiz('write')">
+        <span class="icon">✍️</span><b>Cümle Yaz</b>
+        <small>Türkçe cümleyi İngilizceye çevirerek yaz</small>
+      </button>
+      <button class="card" onclick="startQuiz('word')">
+        <span class="icon">📚</span><b>Kelime Testi</b>
+        <small>B1 kelimelerinin Türkçe anlamını bul</small>
+      </button>
+    </div>
+    <p class="muted" id="stats-line"></p>
+  </section>
+
+  <!-- SORU EKRANI -->
+  <section id="quiz" class="screen hidden">
+    <div class="topbar">
+      <span id="q-type"></span>
+      <span id="q-count"></span>
+    </div>
+    <div class="bar"><div id="q-bar"></div></div>
+    <p class="label" id="q-label"></p>
+    <h2 id="q-text"></h2>
+    <div id="q-options"></div>
+    <div id="q-write" class="hidden">
+      <textarea id="answer" rows="3" placeholder="İngilizce çevirini buraya yaz..."></textarea>
+      <button class="primary" id="check-btn" onclick="checkWrite()">Kontrol Et</button>
+    </div>
+    <div id="feedback" class="hidden"></div>
+    <button class="primary hidden" id="next-btn" onclick="nextQ()">Sonraki →</button>
+  </section>
+
+  <!-- SONUÇ -->
+  <section id="result" class="screen hidden">
+    <h2>Tur bitti!</h2>
+    <p class="big" id="r-score"></p>
+    <p id="r-msg"></p>
+    <div class="row">
+      <button class="primary" onclick="startQuiz(state.mode)">Tekrar</button>
+      <button onclick="show('home')">Ana Sayfa</button>
+    </div>
+  </section>
+
+  <!-- GELİŞİM -->
+  <section id="progress" class="screen hidden">
+    <h2>Gelişimim</h2>
+    <div id="p-boxes" class="boxes"></div>
+    <h3>Son turlar</h3>
+    <div id="p-history"></div>
+    <h3>Tekrar etmen gerekenler</h3>
+    <div id="p-wrong"></div>
+    <button class="danger" onclick="resetAll()">İlerlemeyi sıfırla</button>
+  </section>
+</main>
+
+<script src="data/words.js"></script>
+<script src="data/sentences1.js"></script>
+<script src="data/sentences2.js"></script>
+<script src="data/sentences3.js"></script>
+<script src="data/sentences4.js"></script>
+<script src="data/sentences5.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
